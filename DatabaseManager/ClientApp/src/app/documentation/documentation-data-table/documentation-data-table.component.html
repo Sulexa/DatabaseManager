@@ -1,0 +1,31 @@
+<h1 class="mat-h1">Contenu des tables data</h1>
+<mat-nav-list *ngIf="selectedEnvironment === null">
+    <a mat-list-item  *ngFor="let environment of environments" (click)="selectEnvironment(environment)">{{ environment.name }}</a>
+</mat-nav-list>
+<div *ngIf="selectedEnvironment !== null" class="environment-container">
+    <div>
+        <h2 class="mat-h2">Environnement : {{ selectedEnvironment.name }}</h2>
+        <button mat-button color="primary"  (click)="resetEnvironment()">Changer l'environnement</button>
+    </div>
+    <div class="table-container">
+        <mat-nav-list>
+            <a mat-list-item  *ngFor="let table of tables"
+            (click)="selectTable(table)" [ngClass]="{'selected-table': table === selectedTable}">{{ table }}</a>
+        </mat-nav-list>
+        <div class="mat-table-container">
+            <h2 class="mat-h2" *ngIf="selectedTable !== null">Table : {{ selectedTable }}</h2>
+            <mat-table *ngIf="tableContent !== null" [dataSource]="tableContent.rows">
+                <ng-container *ngFor="let column of tableContent.columns; let i = index;" matColumnDef="{{column}}">
+                <mat-header-cell *matHeaderCellDef>{{ column }}</mat-header-cell>
+                <mat-cell *matCellDef="let element"> {{ element[i] }} </mat-cell>
+                </ng-container>
+                
+                <mat-header-row *matHeaderRowDef="tableContent.columns"></mat-header-row>
+                <mat-row *matRowDef="let row; columns: tableContent.columns;"></mat-row>
+            </mat-table>
+        </div>
+    </div>
+</div>
+<div class="spinner-wrapper" *ngIf="loading">
+    <mat-progress-spinner mode="indeterminate"></mat-progress-spinner>
+</div>

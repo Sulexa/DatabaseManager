@@ -1,0 +1,45 @@
+<h1 mat-dialog-title>{{data.environment.name}}</h1>
+<div mat-dialog-content class="migrate-dialog-informations">
+  <div>
+    <label>Migration actuelle</label>
+    <span *ngIf="actualMigration">{{actualMigration.name}}</span>
+    <span *ngIf="!actualMigration">Aucune migration</span>
+  </div>
+  <div>
+    <label>Migration cible</label>
+    <span>{{data.targetMigration.name}}</span>
+  </div>
+  <div class="migration-type">
+    <label>Type de migration</label>
+    <span *ngIf="migrationState === MigrationState.UPGRADE">
+      <span>Upgrade</span>
+      <span class="upgrade">
+          <span>&nbsp;{{migrationsToApply.length}}</span>
+          <i class="material-icons">arrow_drop_up</i>
+      </span>
+    </span>
+    <span *ngIf="migrationState === MigrationState.DOWNGRADE">
+      <span>Downgrade</span>
+      <span class="downgrade">
+          <span>&nbsp;{{migrationsToApply.length}}</span>
+          <i class="material-icons">arrow_drop_down</i>
+      </span>
+    </span>  
+    <span *ngIf="migrationState === MigrationState.REPAIR">
+      <span>Repair</span>
+      <span class="repair">
+          <i class="material-icons">repeat</i>
+      </span>
+    </span>
+    <span *ngIf="migrationState !== MigrationState.REPAIR">
+      <button *ngIf="!getSqlIsLoading" class="download-sql" mat-icon-button aria-label="Download the sql file" (click)="getSql()">
+        <mat-icon>description</mat-icon>
+      </button>
+      <mat-spinner *ngIf="getSqlIsLoading" class="download-sql-loading" diameter="20"></mat-spinner>
+    </span>
+  </div>
+</div>
+<div mat-dialog-actions>
+  <button mat-raised-button [mat-dialog-close]="false" cdkFocusInitial>Annuler</button>
+  <button mat-raised-button color="primary" [mat-dialog-close]="true">Appliquer</button>
+</div>

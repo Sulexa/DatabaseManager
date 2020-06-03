@@ -1,0 +1,22 @@
+<div class="script-details" *ngIf="script">
+    <h2 style="text-align: center; max-width: 220px;">
+        {{script.name}}
+        <span class="subtitle">{{script.description}}</span>
+    </h2>
+    <mat-form-field style="width: 220px;">
+        <mat-label>Sélectionner l'environment</mat-label>
+        <mat-select [(ngModel)]="selectedEnvironment">
+            <mat-option *ngFor="let environment of script.environments" [value]="environment">
+                {{environment}}
+            </mat-option>
+        </mat-select>
+    </mat-form-field >
+    <div>
+        <button mat-raised-button color="primary" [disabled]="loading || !selectedEnvironment" (click)="apply()">
+            <span *ngIf="!loading">Appliquer</span>
+            <div *ngIf="loading" style="padding: 3.4px;">
+                <mat-spinner diameter="30"></mat-spinner>
+            </div>
+        </button>
+    </div>
+</div>

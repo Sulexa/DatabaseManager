@@ -1,0 +1,19 @@
+:host{
+    .script-card{
+        width: 200px;
+        height: 168px;
+        margin: 10px;
+    }
+    
+    .script-card-container{
+        display: flex;
+        flex-wrap: wrap;
+    }    
+    .script-list-container{
+        height: 100%;
+    }
+
+    .script-card{
+        cursor: pointer;
+    }
+}

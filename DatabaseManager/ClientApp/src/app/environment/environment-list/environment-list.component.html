@@ -1,0 +1,14 @@
+<mat-drawer-container *ngIf="!loading" class="environment-list-container" autosize>
+    <div class="environment-list-sidenav-content">
+        <app-environment-card *ngFor="let environment of environments" [environment]="environment"
+            (click)="onClickEnvironmentCard(environment)"></app-environment-card>
+    </div>
+
+    <mat-drawer #environmentDrawer class="environment-list-sidenav" mode="side" position="end">
+        <app-environment-details [environment]="selectedEnvironment" (environmentChange)="onEnvironmentChange($event)"></app-environment-details>
+    </mat-drawer>
+
+</mat-drawer-container>
+<div class="spinner-wrapper" *ngIf="loading">
+    <mat-progress-spinner mode="indeterminate"></mat-progress-spinner>
+</div>

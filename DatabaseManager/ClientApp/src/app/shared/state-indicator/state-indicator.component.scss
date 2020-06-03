@@ -1,0 +1,26 @@
+@import "../../../variables.scss";
+
+:host {
+    .state-indicator {
+        &.on:before {
+            background-color: $success-color;
+            border-color: $success-color-dark;
+            box-shadow: 0px 0px 4px 1px $success-color;
+        }
+
+        &.off:before {
+            background-color: $danger-color;
+            border-color: $danger-color-dark;
+            box-shadow: 0px 0px 4px 1px $danger-color;
+        }
+
+        &:before {
+            content: ' ';
+            display: inline-block;
+            width: 10px;
+            height: 10px;
+            border: 1px solid #000;
+            border-radius: 10px;
+        }
+    }
+}

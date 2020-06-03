@@ -1,0 +1,5 @@
+{
+    "SERVER_API": {
+        "END_POINT": "https://localhost:44304"
+    }
+}

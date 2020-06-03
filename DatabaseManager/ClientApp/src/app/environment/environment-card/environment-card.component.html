@@ -1,0 +1,13 @@
+<mat-card matRipple>
+    <span>
+        {{environment.name}}
+    </span>
+    <div class="float-right">
+        <span *ngIf="migrationToApply > 0">
+            {{migrationToApply}} migrations de retards
+        </span>
+        <span *ngIf="migrationToApply === 0">
+            La base de données est à jour
+        </span>
+    </div>
+</mat-card>

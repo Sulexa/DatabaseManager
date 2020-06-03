@@ -1,0 +1,29 @@
+@import "variables.scss";
+
+/* You can add global styles to this file, and also import other style files */
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+.snack-bar-success{
+    background-color: $success-color;
+    color: white;
+    .mat-simple-snackbar-action{
+        color: white !important;
+    }
+}
+
+.snack-bar-error{
+    background-color: $danger-color;
+    color: white;
+    .mat-simple-snackbar-action{
+        color: white !important;
+    }
+}
+
+.spinner-wrapper{
+    display: flex; 
+    align-items: center; 
+    justify-content: center;
+    height: calc(100% - 48px);
+}

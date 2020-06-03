@@ -1,0 +1,45 @@
+@import "../../../variables.scss";
+
+:host{
+    .subtitle{
+        font-size: 10px;
+        color: grey;
+        text-align: center;
+        display: block;
+        font-weight: lighter;
+    }
+    .mat-table{
+        width: 700px;
+        overflow: auto;
+        
+    }
+    th,td{
+        text-align: center;
+    }
+
+    .applied{
+        color: $success-color;
+    }
+    .not-applied{
+        color: $danger-color;
+    }
+    
+    .mat-column-action{
+        width: 210px;
+    }
+
+    .mat-column-applied{
+        width: 48px;
+    }
+    
+    .mat-column-date{
+        width: 150px;
+    }
+
+    .card-unapplied-migration{
+        background-color: $danger-color;
+        margin: 15px;
+        color: white;
+    }
+    
+}
