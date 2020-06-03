@@ -1,0 +1,42 @@
+:host {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+
+    h1 {
+        padding: 16px;
+        margin: 0px;
+    }
+
+    .environment-container {
+        display: flex;
+        flex-direction: column;
+        height: calc(100% - 64px);
+
+        h2 {
+            display: inline-block;
+            margin-left: 16px;
+        }
+
+        .table-container {
+            display: flex;
+            flex-direction: row;
+            height: calc(100% - 48px);
+
+            mat-nav-list {
+                overflow-y: scroll;
+                min-width: 300px;
+                flex-basis: 300px;
+                
+                .selected-table {
+                    background-color: #dddddd;
+                }
+            }
+
+            .mat-table-container {
+                overflow-y: scroll;
+                flex-grow: 1;
+            }
+        }
+    }
+}

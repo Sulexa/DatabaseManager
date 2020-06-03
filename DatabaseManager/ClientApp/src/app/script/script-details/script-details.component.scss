@@ -1,0 +1,15 @@
+@import "../../../variables.scss";
+
+:host{
+    .subtitle{
+        font-size: 10px;
+        color: grey;
+        text-align: center;
+        display: block;
+        font-weight: lighter;
+    }
+    .script-details{
+        margin: 10px;
+    }
+    
+}

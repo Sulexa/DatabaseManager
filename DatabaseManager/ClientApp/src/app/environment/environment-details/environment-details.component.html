@@ -1,0 +1,66 @@
+<div *ngIf="environment">
+    <h2 style="text-align: center;">
+        {{environment.name}}
+        <span class="subtitle">{{environment.databaseServerName}} | {{environment.databaseName}}</span>
+    </h2>
+    <mat-card class="card-unapplied-migration" *ngIf="hasUnappliedMigrationBeforeCurrent">
+        <mat-card-header>
+            <mat-card-title>Conflit sur les migrations</mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+            <p>
+                Il y a des migration non appliqué précédent la migration actuellement appliqué.
+            </p>
+        </mat-card-content>
+        <mat-card-actions>
+            <button (click)="repairMigrations()" mat-raised-button [disabled]="loading">Mettre à jour &
+                Appliquer les migrations </button>
+        </mat-card-actions>
+    </mat-card>
+
+    <mat-progress-bar mode="indeterminate" *ngIf="loading"></mat-progress-bar>
+    <table mat-table [dataSource]="environment.migrations" class="mat-elevation-z8">
+
+        <!--- Note that these columns can be defined in any order.
+          The actual rendered columns are set as a property on the row definition" -->
+
+        <!-- Position Column -->
+        <ng-container matColumnDef="name">
+            <th mat-header-cell *matHeaderCellDef> Nom </th>
+            <td mat-cell *matCellDef="let migration"> {{migration.name}} </td>
+        </ng-container>
+
+        <!-- Name Column -->
+        <ng-container matColumnDef="date">
+            <th mat-header-cell *matHeaderCellDef> Date de création </th>
+            <td mat-cell *matCellDef="let migration"> {{migration.date | date:'short'}} </td>
+        </ng-container>
+
+        <!-- Weight Column -->
+        <ng-container matColumnDef="applied">
+            <th mat-header-cell *matHeaderCellDef> Appliqué </th>
+            <td mat-cell *matCellDef="let migration">
+                <i *ngIf="migration.applied" class="material-icons applied">check</i>
+                <i *ngIf="!migration.applied" class="material-icons not-applied">close</i>
+            </td>
+        </ng-container>
+
+        <!-- Symbol Column -->
+        <ng-container matColumnDef="action">
+            <th mat-header-cell *matHeaderCellDef> Action </th>
+            <td mat-cell *matCellDef="let migration" class="align-content-center">
+                <span *ngIf="migration.id === currentMigrationId">
+                    Migration actuelle
+                </span>
+                <button *ngIf="!migration.applied" (click)="openMigrateDialog(migration)" mat-raised-button color="warn"
+                    [disabled]="loading || hasUnappliedMigrationBeforeCurrent">Mettre à jour</button>
+                <button *ngIf="migration.applied && migration.id !== currentMigrationId"
+                    (click)="openMigrateDialog(migration)" mat-raised-button color="accent"
+                    [disabled]="loading || hasUnappliedMigrationBeforeCurrent">Rétrograder à cette version</button>
+            </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true;"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+</div>

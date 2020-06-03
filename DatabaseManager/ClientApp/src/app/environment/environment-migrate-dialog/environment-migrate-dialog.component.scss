@@ -1,0 +1,44 @@
+:host{
+    .migrate-dialog-informations{ 
+        > div{
+            margin-bottom: 10px;
+            label{
+                width: 160px;
+                display: inline-block;
+            }
+            
+            > span{
+                display: inline-flex;
+            }
+        }
+    }
+    .migration-type{
+        span > span {
+            &.upgrade{
+                color:green;
+            }
+            &.downgrade{
+                color: red;
+            }
+            &.repair{
+                margin-left: 5px;
+                color: orangered;
+            }
+            position: relative;
+            i{
+                position: absolute;
+                right: -18px;
+                top: -3px;
+            }
+        }
+    }
+
+    .download-sql{
+        margin-left: 5px;
+    }
+
+    .download-sql-loading{
+        display: inline; 
+        margin-left: 15px;
+    }
+}
